@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {   
                   
-        transform.position = new Vector3(player.position.x+lookahead, transform.position.y, transform.position.z);   
+        transform.position = new Vector3(player.position.x+lookahead, player.position.y, transform.position.z);   
 
         if (bodyPlayer.velocity != Vector2.zero) 
         {

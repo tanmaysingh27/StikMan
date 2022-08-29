@@ -4,20 +4,39 @@ using UnityEngine;
 
 public class liftMovement : MonoBehaviour
 {
-        private Rigidbody2D body;
-    void Start()
-    {
-        
-        body = GetComponent<Rigidbody2D>();
-    }
+      [SerializeField] private float movementDistance;
+      [SerializeField] private float speed;
+      private bool movingUp;
+      private float top;
+      private float bottom;  
 
-    // Update is called once per frame
-    void Update()
-    {   
-        for (float j = -2f; j < 5.01f; j+=0.0000000000001f)
+      private void start()
+      {
+        top =  transform.position.y - movementDistance;
+        bottom = transform.position.y + movementDistance;
+      }
+   
+
+
+   private void Update()
+   {
+     if(movingUp)
+     {
+        if(transform.position.y > top)
         {
-            body.transform.localPosition =new Vector3(-9.5f,j,0);
+            transform.position =new Vector3(transform.position.x, transform.position.y - speed * Time.deltaTime,transform.position.z);
         }
-    
-    }
+        else
+        movingUp = false;
+     }
+     else
+     {
+        if(transform.position.y < bottom)
+        {
+             transform.position =new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime,transform.position.z);
+        }
+        else
+        movingUp = true;
+     }
+   }
 }
