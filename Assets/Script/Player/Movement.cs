@@ -56,6 +56,8 @@ public class  Movement : MonoBehaviour
         //Animation 
         anim.SetBool("running", HorizontalInput !=0);
         anim.SetBool("grounded", isGrounded());
+
+        // Debug.Log(Input.GetKey(KeyCode.Space));
         
        
 
@@ -74,7 +76,7 @@ public class  Movement : MonoBehaviour
         return raycasthit2d.collider != null ;
     }
 
-    private bool isGrounded()
+    public bool isGrounded()
     {
         RaycastHit2D raycasthit2d =  Physics2D.BoxCast(boxCollider.bounds.center,boxCollider.bounds.size, 0f, Vector2.down, 0.1f, ground);
         return raycasthit2d.collider != null ;
@@ -89,9 +91,5 @@ public class  Movement : MonoBehaviour
 
     public bool canAttack (){
         return HorizontalInput == 0 && isGrounded();
-    }
-    
-     
-          
-        
+    }      
 }
